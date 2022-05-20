@@ -20,7 +20,19 @@ async function load() {
 
     for await (let message of messages) {
         // Do something with the message.
-        console.log(message);
+        //console.log(message);
+    }
+
+
+    let page = await messenger.messages.query({ fromDate: new Date('2021-01-01') });
+    // Do something with page.messages.
+
+    console.log(page);
+
+    while (page.id) {
+        page = await messenger.messages.continueList(page.id);
+        console.log(page);
+        // Do something with page.messages.
     }
 
 }
